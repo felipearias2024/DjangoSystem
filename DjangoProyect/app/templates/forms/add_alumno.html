@@ -1,0 +1,18 @@
+<form action="{% url 'add' %}" method="post">
+{% csrf_token %}
+    <label for="nombre">Nombre</label><br>
+    <input type="text" name="nombre" id="nombre"/>
+    <br>
+    <label for="apellido">Apellido</label><br>
+    <input type="text" name="apellido" id="apellidop"/>
+    <br>
+    <label for="dni">Dni</label><br>
+    <input type="text" name="dni" id="dni"/>
+    <br>
+    <label for="materia">Materia</label><br>
+    <input type="text" name="materia" id="materia"/>
+    <br>
+    <br>
+    <input type="submit" value="Submit"/>
+</form>
+<br>

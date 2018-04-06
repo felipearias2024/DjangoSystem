@@ -1,0 +1,28 @@
+<html>
+
+    <head>
+
+        <title> {{nombre_m}} </title>
+        {% include 'partials/css.html' %}
+    </head>
+    <body>
+
+        <table>
+    <thead>
+        <th>Alumnos</th>
+        <th>Cargar nota</th>
+    </thead>
+    <tbody>
+        {% for alumno in alumnos %}
+	        <tr>
+	            <td>{{alumno.nombre_a}}</td>
+                <td><input type="radio" name="gender" value="male"><br></td>
+	        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+<a href="/" class="button button3">Volver</a>
+    </body>
+
+</html>

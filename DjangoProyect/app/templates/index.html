@@ -2,13 +2,25 @@
 
     <head>
 
-        <title> HOla</title>
-
+        <title> Main </title>
+		{% include 'partials/css.html' %}
     </head>
 
     <body>
 
-        <p> Hola </p>
+        <table>
+    <thead>
+        <th>Asignatura</th>
+    </thead>
+    <tbody>
+        {% for curso in cursos %}
+	        <tr>
+	            <td><a href="{% url 'materia' curso.materia_id %}">{{curso.nombre_m}}</a></td>
+	        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
 
     </body>
 
