@@ -2,12 +2,13 @@
 from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render
+from app.models import *
 
 # Create your views here.
 
 #Function that render the first Template
 def index(request):
-    materias = Curso.objects.all()
+    materias = Materia.objects.all()
     return render(request,'index.html', {'todos_los_cursos':materias})
 
 def teachersData(request):
