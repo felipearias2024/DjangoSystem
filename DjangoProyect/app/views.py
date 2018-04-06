@@ -19,6 +19,11 @@ def studentsData(request):
     students = Alumno.objects.all()
     return render(request, 'alumno.html', {'todos_los_alumnos':students})
 
+def datos_student_addNota(request, id_for):
+    print id_for;
+    student = Alumno.objects.get(id=id_for)
+    return render(request, 'addNota.html', {'alumno':student})
+
 def addNota(request):
     if request.method == 'POST':
         student_id = request.POST['student_id']
