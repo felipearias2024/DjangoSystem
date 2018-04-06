@@ -25,5 +25,5 @@ def addNota(request):
         alumno = Alumno.objects.get(dni=student_id)
         nota = Nota(alumno = alumno, nota=student_nota)
         nota.save()
-        return HttpResponse('{}'.format(alumno.apellido_a), '{}'.format(alumno.nombre_a)
+        return HttpResponse('{}'.format(alumno.apellido_a), '{}'.format(alumno.nombre_a))
     return HttpResponse("Solo podes acceder por POST !!")
