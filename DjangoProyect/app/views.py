@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
+
+#Function that render the first Template
 def index(request):
     materias = Curso.objects.all()
     return render(request,'index.html', {'todos_los_cursos':materias})
@@ -24,3 +26,4 @@ def addNota(request):
         nota = Nota(alumno = alumno, nota=student_nota)
         nota.save()
         return HttpResponse('{}'.format(alumno.apellido_a), '{}'.format(alumno.nombre_a)
+    return HttpResponse("Solo podes acceder por POST !!")
