@@ -9,6 +9,10 @@ from app.models import *
 #Function that render the first Template
 def index(request):
     materias = Materia.objects.all()
+    for a in materias:
+        matri = Matricula.objects.filter(materia=a)
+        cantidad = matri.count()
+        a.cant_alumnos = cantidad
     return render(request,'index.html', {'cursos':materias})
 
 def addNota(request):
@@ -28,10 +32,8 @@ def addNota(request):
 
 def materia(request, pk):
     materia = Materia.objects.get(pk=pk)
-    matriculados = Matricula.objects.get(materia=materia)
-    students = Alumno.objects.filter(dni=matriculados.alumno.dni)
-    teachers = Profesor.objects.all().filter(materia_p=materia)
-    return render(request,'materias.html', {'materia':materia,'alumnos':students, 'profesores':teachers})
+    matriculados = Matricula.objects.filter(materia=materia)
+    return render(request,'materias.html', {'materia':materia,'alumnos':matriculados})
 
 def teachersData(request):
     teachers = Profesor.objects.all()

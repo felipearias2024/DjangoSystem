@@ -18,9 +18,8 @@
         {% for curso in cursos %}
 	        <tr>
 	            <td class="tds"><a href="{% url 'materia' curso.materia_id %}" >{{curso.nombre_m}}</a></td>
-                <td class="tds"></td>
-                <td class="tds"></td>
-
+                <td class="tds">{{curso.profesor.nombre_p}}</td>
+                <td class="tds">{{curso.cant_alumnos}}</td>
 	        </tr>
         {% endfor %}
     </tbody>

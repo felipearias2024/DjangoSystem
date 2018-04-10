@@ -18,10 +18,10 @@
             <tbody>        
                 {% for alumno in alumnos %}
                 <tr>
-                    <td>{{alumno.nombre_a}}</td>
-                    <td>{{alumno.apellido_a}}</td>
-                    <td>{{alumno.dni}}</td>
-                    <td class="vcenter"><input name="aux" onchange="findStudent('{% url 'findStudent' alumno.dni %}', {{alumno.dni}})" type="checkbox" id="nota" value={{alumno.dni}}/></td>
+                    <td>{{alumno.alumno.nombre_a}}</td>
+                    <td>{{alumno.alumno.apellido_a}}</td>
+                    <td>{{alumno.alumno.dni}}</td>
+                    <td class="vcenter"><input name="aux" onchange="findStudent('{% url 'findStudent' alumno.alumno.dni %}', {{alumno.alumno.dni}})" type="checkbox" id="nota" value={{alumno.dni}}/></td>
                 </tr>
                 {% endfor %}
             </tbody>
