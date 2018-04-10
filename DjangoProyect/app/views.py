@@ -15,6 +15,9 @@ def index(request):
         a.cant_alumnos = cantidad
     return render(request,'index.html', {'cursos':materias})
 
+def mostrar(request):
+    return render(request,'createTeacher.html')
+
 def addNota(request):
     print "adding"
     if request.method == 'POST':
@@ -29,6 +32,23 @@ def addNota(request):
         new_nota = Notas(valor=nota, alumno=alumno, materia=materia)
         new_nota.save()
         return redirect('index')
+
+def createTeacher(request):
+    print "creating"
+    if request.method == 'POST':
+        nombre = request.POST['teacher_nombre']
+        apellido = request.POST['teacher_apellido']
+        dni = request.POST['teacher_dni']
+        print nombre
+        print apellido
+        print dni
+        profesor = Profesor(nombre_p=nombre, apellido_p=apellido,dni=dni)
+        profesor.save()
+        '''
+        'data': nombre + " fue creado"
+    return JsonResponse(data)
+    '''
+    return HttpResponse(profesor.nombre_p + " fue creado")
 
 def materia(request, pk):
     materia = Materia.objects.get(pk=pk)

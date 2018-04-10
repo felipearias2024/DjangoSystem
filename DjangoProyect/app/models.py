@@ -35,7 +35,7 @@ class Alumno(models.Model):
 class Notas(models.Model):
     valor = models.IntegerField('Valor de la nota')
     alumno = models.ForeignKey(Alumno)
-    materia = models.ForeignKey(Materia)
+    materia = models.ForeignKey(Materia, null=True)
 
     def __str__(self):
         return 'Nota de {}: {} en {}'.format(self.alumno.nombre_a, self.valor, self.materia.nombre_m)

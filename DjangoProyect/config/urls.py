@@ -20,6 +20,8 @@ from app.views import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),
+    url(r'^crear/$', mostrar, name="mostrar"),
+    url(r'^createTeacher/$', createTeacher, name="createTeacher"),
     url(r'^materia/(?P<pk>\d+)/$', materia, name='materia'),
     url(r'^findStudent/(\d+)/$', findStudent, name='findStudent'),
     url(r'^addNota/$', addNota, name='addNota')
