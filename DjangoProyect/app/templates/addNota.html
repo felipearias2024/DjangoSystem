@@ -1,5 +1,53 @@
-<div class="w3-container" style="margin-top:5%;">
-	<center><span class="style" id ="alumno_n"><a class="style" style="color: #303f9f">Nombre:</a> {{alumno.nombre_a}}</span></center>
-	<center><span class="style" id ="alumno_a"><a class="style" style="color: #303f9f">Apellido:</a> {{form.apellido_a}}</span></center>
-    <center><input type = "numbre" id="new_nota"><a class="style" style="color: #FFFF00">Nota:</a></center>
+<div id="arriba">
+    <header class="w3-container w3-teal"> 
+        <span onclick="document.getElementById('id01').style.display='none'" 
+              class="w3-button w3-display-topright">&times;</span>
+        <h2>Cargar Nota:</h2>
+    </header>
 </div>
+<form id="form_nota" method="POST" action="{% url 'addNota' %}">
+    {% csrf_token %}
+    
+    {% for a in materia %}
+        
+        <input id="materia_id" value="{{a.materia_id}}" type="hidden">
+    
+    {% endfor %}
+    
+<div class="w3-container" style="background-color: #ffff00">
+    <center><span class="style" id ="alumno_n"><a class="style" style="color: #660066">Nombre:</a> {{alumno.nombre_a}}</span></center>
+    <center><span class="style" id ="alumno_a"><a class="style" style="color: #660066">Apellido:</a> {{alumno.apellido_a}}</span></center>
+    <center><span class="style" id ="nota_alumno"><a class="style" style="color: #660066">Nota:</a></span><select onchange="myFunction(event)">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        </select> </center>
+    <input id="student_nota" name="student_nota" value="" type="hidden">
+    <input id="student_id" name="student_id" value="{{alumno.dni}}" type="hidden">
+</div>
+
+
+    
+<footer class="w3-container w3-teal">
+    <button id="cargar" onclick="addNota()"> CARGAR </button>
+</footer>
+</form>
+
+<script>
+
+    function myFunction(e) {
+        document.getElementById("student_nota").value = e.target.value;
+    }
+    
+    function addNota(){
+        form_nota.submit()
+    }
+
+</script>

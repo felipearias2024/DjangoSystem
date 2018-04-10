@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from app.models import *
 
 # Create your views here.
@@ -12,20 +12,22 @@ def index(request):
     return render(request,'index.html', {'cursos':materias})
 
 def addNota(request):
+    print "adding"
     if request.method == 'POST':
         student_id = request.POST['student_id']
-        student_nota = request.POST['student_nota']
+        nota = request.POST['student_nota']
+        print nota
         alumno = Alumno.objects.get(dni=student_id)
-        nota = Nota(alumno = alumno, nota=student_nota)
-        nota.save()
-        return HttpResponse('{}'.format(alumno.apellido_a), '{}'.format(alumno.nombre_a))
-    return HttpResponse("Solo podes acceder por POST !!")
+        new_nota = Notas(alumno=alumno, valor=nota)
+        new_nota.save()
+    return redirect('index')
 
-def materias(request, pk):
+def materia(request, pk):
     materia = Materia.objects.get(pk=pk)
-    students = Alumno.objects.all().filter(materia_a=materia)
+    matriculados = Matricula.objects.get(materia=materia)
+    students = Alumno.objects.filter(dni=matriculados.alumno.dni)
     teachers = Profesor.objects.all().filter(materia_p=materia)
-    return render(request,'materias.html', {'materia':materia, 'profesores':teachers, 'alumnos':students})
+    return render(request,'materias.html', {'materia':materia,'alumnos':students, 'profesores':teachers})
 
 def teachersData(request):
     teachers = Profesor.objects.all()
@@ -35,21 +37,6 @@ def studentsData(request):
     students = Alumno.objects.all()
     return render(request, 'alumno.html', {'alumnos':students})
 
-'''
-
-function datos_formulario_guardia(url, alum) {
-      //alert("soquetes");
-      $.ajax({
-        method: "POST",
-        url: url,
-        data: {
-          csrfmiddlewaretoken: '{{ csrf_token }}'
-        }
-      })
-        .done(function (data) {
-        $("#datos").html(data);
-        document.getElementById('id01').style.display='block';
-      });
-    };
-
-'''
+def findStudent(request, id_for):
+    student = Alumno.objects.get(dni=id_for)
+    return render(request, 'addNota.html', {'alumno':student})

@@ -4,25 +4,82 @@
 
         <title> {{nombre_m}} </title>
         {% include 'partials/css.html' %}
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
     <body>
 
         <table>
-    <thead>
-        <th>Alumnos</th>
-        <th>Cargar nota</th>
-    </thead>
-    <tbody>
-        {% for alumno in alumnos %}
-	        <tr>
-	            <td>{{alumno.nombre_a}}</td>
-                <td><input type="radio" name="gender" value="male"><br></td>
-	        </tr>
-        {% endfor %}
-    </tbody>
+            <thead>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Dni</th>
+                <th>Cargar nota</th>
+            </thead>
+            <tbody>        
+                {% for alumno in alumnos %}
+                <tr>
+                    <td>{{alumno.nombre_a}}</td>
+                    <td>{{alumno.apellido_a}}</td>
+                    <td>{{alumno.dni}}</td>
+                    <td class="vcenter"><input name="aux" onchange="findStudent('{% url 'findStudent' alumno.dni %}', {{alumno.dni}})" type="checkbox" id="nota" value={{alumno.dni}}/></td>
+                </tr>
+                {% endfor %}
+            </tbody>
 
-</table>
-<a href="/" class="button button3">Volver</a>
+        </table>
+
+        <!-- The actual snackbar -->
+        <div id="snackbar"></div>
+
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom" id="datos" >
+
+            </div>
+        </div>
+
+        <a href="/" class="button button3">Volver</a>
     </body>
+
+    <script>        
+
+        $('document').ready(
+            function(){
+                $("#id01").addClass("hiddendiv");
+                $("#student_id").addClass("hiddendiv");
+            }
+        );
+
+
+
+        function findStudent(url, alum) {
+            $.ajax({
+                method: "POST",
+                url: url,
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                }
+            })
+                .done(function (data) {
+                $("#datos").html(data);
+                document.getElementById('id01').style.display='block';
+            });
+        };
+
+        modal = document.getElementById("id01");
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function myFunction() {
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+
+    </script>
 
 </html>
