@@ -38,7 +38,7 @@ class Notas(models.Model):
     materia = models.ForeignKey(Materia)
 
     def __str__(self):
-        return 'Nota de {}: {} en '.format(self.alumno.nombre_a, self.valor, self.materia.nombre_m)
+        return 'Nota de {}: {} en {}'.format(self.alumno.nombre_a, self.valor, self.materia.nombre_m)
     
 class Matricula(models.Model):
     materia = models.ForeignKey(Materia)

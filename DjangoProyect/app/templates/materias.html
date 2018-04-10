@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
     <body>
-
         <table>
             <thead>
                 <th>Nombre</th>
@@ -30,7 +29,7 @@
         </table>
 
         <!-- The actual snackbar -->
-        <div id="snackbar"></div>
+        <div id="snackbar">Nota Cargada !!!</div>
 
         <div id="id01" class="w3-modal">
             <div class="w3-modal-content w3-card-4 w3-animate-zoom" id="datos" >
@@ -51,7 +50,28 @@
         );
 
 
-
+        $(document).on('submit', '#form_nota', function(e){
+            var nota = ({{materia.materia_id}});
+            document.getElementById("materia_id").value = nota;
+            form_nota.submit()
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: 'addNota',
+                data: {
+                    student_id:$('#student_id').val(),
+                    nota:$('#student_nota').val(),
+                    materia_id:$('#materia_nota').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                succes:function(){                    
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+            });
+        });
+        
         function findStudent(url, alum) {
             $.ajax({
                 method: "POST",

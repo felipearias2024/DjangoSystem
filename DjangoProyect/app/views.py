@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from app.models import *
 
@@ -16,11 +16,15 @@ def addNota(request):
     if request.method == 'POST':
         student_id = request.POST['student_id']
         nota = request.POST['student_nota']
-        print nota
+        materia_id = request.POST['materia_id']
+        materia = Materia.objects.get(materia_id=materia_id)
         alumno = Alumno.objects.get(dni=student_id)
-        new_nota = Notas(alumno=alumno, valor=nota)
+        print materia
+        print alumno
+        print nota
+        new_nota = Notas(valor=nota, alumno=alumno, materia=materia)
         new_nota.save()
-    return redirect('index')
+        return redirect('index')
 
 def materia(request, pk):
     materia = Materia.objects.get(pk=pk)
