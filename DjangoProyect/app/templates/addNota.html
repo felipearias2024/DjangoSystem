@@ -1,3 +1,20 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.btn {
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+
+}
+
+.success {background-color: #248f8f;} /* Green */
+.success:hover {background-color: #248f8f;}
+</style>
+</head>
 <div id="arriba">
     <header class="w3-container w3-teal"> 
         <span onclick="document.getElementById('id01').style.display='none'" 
@@ -9,6 +26,7 @@
     {% csrf_token %}
 
     <input type="hidden" value="" name="materia_id" id="materia_id">
+
     <div class="w3-container" style="background-color: #ffff00">
         <center><span class="style" id ="alumno_n"><a class="style" style="color: #660066">Nombre:</a> {{alumno.nombre_a}}</span></center>
         <center><span class="style" id ="alumno_a"><a class="style" style="color: #660066">Apellido:</a> {{alumno.apellido_a}}</span></center>
@@ -31,7 +49,7 @@
 
 
     <footer class="w3-container w3-teal">
-        <button id="cargar" onclick="submit()"> CARGAR </button>
+       <right> <button class="btn success" id="cargar" onclick="submit()"> CARGAR </button> </right>
     </footer>
 </form>
 
