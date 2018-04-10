@@ -8,13 +8,13 @@
 
     <body>
 
-        <form id="create_teacher" method="POST" action="{% url 'createTeacher' %}">
-            {% csrf_token %}
-            <span>Nombre:</span><input name="teacher_nombre" id="teacher_nombre">
-            <span>Apellido:</span><input name="teacher_apellido" id="teacher_apellido">
-            <span>Dni:</span><input name="teacher_dni" id="teacher_dni">
-            <button type="submit" value="Crear">Crear</button>
-        </form>
+            <form id="create_teacher" method="POST" action="{% url 'createTeacher' %}">
+                {% csrf_token %}
+                <span>Nombre:</span><input name="teacher_nombre" id="teacher_nombre">
+                <span>Apellido:</span><input name="teacher_apellido" id="teacher_apellido">
+                <span>Dni:</span><input name="teacher_dni" id="teacher_dni">
+                <button type="submit" value="Crear">Crear</button>
+            </form>
        
     </body>
 
