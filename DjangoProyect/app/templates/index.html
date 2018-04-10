@@ -9,13 +9,18 @@
     <body>
 
         <table>
-    <thead>
-        <th>Asignatura</th>
+    <thead class="ths">
+        <th >Asignatura</th>
+        <th class="center">Nombre del profesor</th>
+        <th class="center">Cantidad de alumnos</th>
     </thead>
     <tbody>
         {% for curso in cursos %}
 	        <tr>
-	            <td><a href="{% url 'materia' curso.materia_id %}">{{curso.nombre_m}}</a></td>
+	            <td class="tds"><a href="{% url 'materia' curso.materia_id %}" >{{curso.nombre_m}}</a></td>
+                <td class="tds"></td>
+                <td class="tds"></td>
+
 	        </tr>
         {% endfor %}
     </tbody>
