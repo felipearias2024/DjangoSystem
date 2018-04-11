@@ -19,7 +19,9 @@ from app.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index, name="index"),
+    url(r'^index$', index, name="index"),
+    url(r'^loginUser$', loginUser, name="loginUser"),
+    url(r'^$', login, name="login"),
     url(r'^crear/$', mostrar, name="mostrar"),
     url(r'^createTeacher/$', createTeacher, name="createTeacher"),
     url(r'^materia/(?P<pk>\d+)/$', materia, name='materia'),

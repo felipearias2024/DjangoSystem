@@ -3,12 +3,14 @@ from __future__ import unicode_literals
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from app.models import *
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 # Create your views here.
 
 #Function that render the first Template
 def index(request):
-    materias = Materia.objects.all()
+    materias = Materia.objects.all().order_by('nombre_m')
     for a in materias:
         matri = Matricula.objects.filter(materia=a)
         cantidad = matri.count()
@@ -17,6 +19,22 @@ def index(request):
 
 def mostrar(request):
     return render(request,'createTeacher.html')
+
+def login(request):
+    return render(request,'login.html')
+
+def loginUser(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            return redirect('index')
+            # A backend authenticated the credentials
+        else:
+            # No backend authenticated the credentials
+            return HttpResponse("No Existe ese User")
+    return HttpResponse("Tenes que entrar por Post")
 
 def addNota(request):
     print "adding"
@@ -44,15 +62,11 @@ def createTeacher(request):
         print dni
         profesor = Profesor(nombre_p=nombre, apellido_p=apellido,dni=dni)
         profesor.save()
-        '''
-        'data': nombre + " fue creado"
-    return JsonResponse(data)
-    '''
-    return HttpResponse(profesor.nombre_p + " fue creado")
+        return HttpResponse(profesor.nombre_p + " fue creado")
 
 def materia(request, pk):
     materia = Materia.objects.get(pk=pk)
-    matriculados = Matricula.objects.filter(materia=materia)
+    matriculados=Matricula.objects.filter(materia=materia)
     return render(request,'materias.html', {'materia':materia,'alumnos':matriculados})
 
 def teachersData(request):

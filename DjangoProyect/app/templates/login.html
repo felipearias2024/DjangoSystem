@@ -1,0 +1,23 @@
+<html>
+
+    <head>
+    
+        <title> Login </title>
+    
+    </head>
+
+    <body>
+        
+        {{user}}
+    
+        <form id="form_login" action="{% url 'loginUser' %}" method="POST">
+            {% csrf_token %}
+            <span id="username_span">User</span><input name="username" id="username"><br>
+            <span id="password_span">Password</span><input name="password" id="password" type="password"><br>
+            <button type="submit" values="submit" id="formulario">Submit</button>
+        </form>
+    
+    
+    </body>
+
+</html>
