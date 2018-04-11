@@ -30,17 +30,17 @@
     <div class="w3-container" style="background-color: #ffffff">
         <center><span class="style" id ="alumno_n"><a class="style" style="color: #000000">Nombre:</a> {{alumno.nombre_a}}</span></center>
         <center><span class="style" id ="alumno_a"><a class="style" style="color: #000000">Apellido:</a> {{alumno.apellido_a}}</span></center>
-        <center><span class="style" id ="nota_alumno"><a class="style" style="color: #000000">Nota:</a></span><select value=1 onchange="myFunction(event)">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
+        <center><span class="style" id ="nota_alumno"><a class="style" style="color: #000000">Nota:</a></span><select onchange="myFunction(event)">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
             </select> </center>
         <input id="student_nota" name="student_nota" value="" type="hidden">
         <input id="student_id" name="student_id" value="{{alumno.dni}}" type="hidden">
@@ -54,6 +54,13 @@
 </form>
 
 <script>
+    
+    default_value();
+    
+    function default_value(){
+        document.getElementById("student_nota").value = 1;
+        console.log(document.getElementById("student_nota").value)
+    }
 
     function myFunction(e) {
         document.getElementById("student_nota").value = e.target.value;

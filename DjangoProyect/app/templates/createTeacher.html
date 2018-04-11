@@ -6,16 +6,21 @@
 		{% include 'partials/css.html' %}
     </head>
 
-    <body>
+    <body bgcolor="#ffb3ff">
 
+    {% if user.is_authenticated %}
         <form id="create_teacher" method="POST" action="{% url 'createTeacher' %}">
             {% csrf_token %}
-            <span>Nombre:</span><input name="teacher_nombre" id="teacher_nombre">
-            <span>Apellido:</span><input name="teacher_apellido" id="teacher_apellido">
-            <span>Dni:</span><input name="teacher_dni" id="teacher_dni">
+            <span>Nombre:</span><input name="teacher_nombre" id="teacher_nombre"><br>
+            <span>Apellido:</span><input name="teacher_apellido" id="teacher_apellido"><br>
+            <span>Dni:</span><input name="teacher_dni" id="teacher_dni"><br>
             <button type="submit" value="Crear">Crear</button>
         </form>
-       
+    {% else %}
+        <p> Tenes que estar logueado </p>
+    {% endif %}
+       <br>
+        <a href="{% url 'index' %}"> Volver </a>
     </body>
 
 </html>

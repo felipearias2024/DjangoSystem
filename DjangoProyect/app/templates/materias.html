@@ -36,16 +36,16 @@
     <body>
         <table id="customers">
             <thead>
-                <th>Nombre</th>
                 <th>Apellido</th>
+                <th>Nombre</th>
                 <th>Dni</th>
                 <th>Cargar nota</th>
             </thead>
             <tbody>        
                 {% for alumno in alumnos %}
                 <tr>
-                    <td>{{alumno.alumno.nombre_a}}</td>
                     <td>{{alumno.alumno.apellido_a}}</td>
+                    <td>{{alumno.alumno.nombre_a}}</td>
                     <td>{{alumno.alumno.dni}}</td>
                     <td class="vcenter"><input name="aux" onchange="findStudent('{% url 'findStudent' alumno.alumno.dni %}', {{alumno.alumno.dni}})" type="checkbox" id="nota" value={{alumno.dni}}/></td>
                 </tr>
@@ -62,7 +62,9 @@
 
             </div>
         </div>
-
+        
+        <br>
+        
         <a href="/" class="button button3">Volver</a>
     </body>
 
