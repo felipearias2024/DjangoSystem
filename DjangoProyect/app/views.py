@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from app.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from django.contrib import auth
 
 # Create your views here.
 
@@ -27,8 +28,9 @@ def loginUser(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(username=username, password=password)
+        user = authenticate(request, username=username, password=password)
         if user is not None:
+            auth.login(request, user)
             return redirect('index')
             # A backend authenticated the credentials
         else:
@@ -80,3 +82,4 @@ def studentsData(request):
 def findStudent(request, id_for):
     student = Alumno.objects.get(dni=id_for)
     return render(request, 'addNota.html', {'alumno':student})
+

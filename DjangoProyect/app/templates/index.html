@@ -7,12 +7,16 @@
     </head>
 
     <body>
+         <ul class="center5">
+            <li><a id="a" href="{% url 'mostrar' %}">Crear Profesor</a></li>
+            <li><a id="a" href="news.asp">Cerrar sesion</a></li>
+        </ul> <br><br><br>
 
         <table>
     <thead class="ths">
         <th >Asignatura</th>
-        <th class="center">Nombre del profesor</th>
-        <th class="center">Cantidad de alumnos</th>
+        <th>Nombre del profesor</th>
+        <th>Cantidad de alumnos</th>
     </thead>
     <tbody>
         {% for curso in cursos %}
@@ -26,8 +30,7 @@
 
 </table>
 
-    <a href="{% url 'mostrar' %}">Crear Profesor</a>
-
+    
     </body>
 
 </html>
