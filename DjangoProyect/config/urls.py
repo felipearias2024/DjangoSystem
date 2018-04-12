@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^index$', index, name="index"),
     url(r'^loginUser$', loginUser, name="loginUser"),
     url(r'^$', login, name="login"),
+    url(r'^logout/$', logoutv, name="logout"),
     url(r'^crear/$', mostrar, name="mostrar"),
     url(r'^createTeacher/$', createTeacher, name="createTeacher"),
     url(r'^materia/(?P<pk>\d+)/$', materia, name='materia'),

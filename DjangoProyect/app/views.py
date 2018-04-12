@@ -4,8 +4,9 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from app.models import *
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
 from django.contrib import auth
+from django.contrib.auth import login, logout, authenticate
+
 
 # Create your views here.
 
@@ -23,6 +24,10 @@ def mostrar(request):
 
 def login(request):
     return render(request,'login.html')
+
+def logoutv(request):
+    logout(request)
+    return redirect('/')
 
 def loginUser(request):
     if request.method == 'POST':
@@ -64,7 +69,7 @@ def createTeacher(request):
         print dni
         profesor = Profesor(nombre_p=nombre, apellido_p=apellido,dni=dni)
         profesor.save()
-        return HttpResponse(profesor.nombre_p + " fue creado")
+        return redirect('index')
 
 def materia(request, pk):
     materia = Materia.objects.get(pk=pk)
