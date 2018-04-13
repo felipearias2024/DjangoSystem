@@ -1,0 +1,23 @@
+<html>
+
+    <head>
+    
+        <title> Login </title>
+        {% include 'partials/css.html' %}
+    </head>
+
+    <body>
+    
+    <div class="center">
+        <p class="center2">{{user}} </p>
+        <form id="form_login" action="{% url 'loginUser' %}" method="POST">
+            {% csrf_token %}
+            <span id="username_span">Username</span><input class="login" name="username" id="username"><br><br>
+            <span id="password_span">Password  </span><input class="login" name="password" id="password" type="password"><br>
+            <button class="button button3 center3" type="submit" values="submit" id="formulario">Submit</button>
+        </form>
+    </div>
+    
+    </body>
+
+</html>

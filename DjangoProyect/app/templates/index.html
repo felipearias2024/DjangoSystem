@@ -1,0 +1,36 @@
+<html>
+
+    <head>
+
+        <title> Main </title>
+		{% include 'partials/css.html' %}
+    </head>
+
+    <body>
+         <ul class="center5">
+            <li><a id="a" href="{% url 'mostrar' %}">Crear Profesor</a></li>
+            <li><a id="a" href="{% url 'logout' %}">Cerrar sesion</a></li>
+        </ul> <br><br><br>
+
+        <table>
+    <thead class="ths">
+        <th >Asignatura</th>
+        <th>Nombre del profesor</th>
+        <th>Cantidad de alumnos</th>
+    </thead>
+    <tbody>
+        {% for curso in cursos %}
+	        <tr>
+	            <td class="tds"><a href="{% url 'materia' curso.materia_id %}" >{{curso.nombre_m}}</a></td>
+                <td class="tds">{{curso.profesor.nombre_p}}</td>
+                <td class="tds">{{curso.cant_alumnos}}</td>
+	        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+    
+    </body>
+
+</html>

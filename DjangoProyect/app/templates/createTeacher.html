@@ -1,0 +1,31 @@
+<html>
+
+    <head>
+
+        <title> Create Teacher </title>
+		{% include 'partials/css.html' %}
+    </head>
+
+    <body>
+
+        <ul class="center5">
+            <li><a id="a2" href="{% url 'index' %}"> Volver </a></li>
+        </ul> <br>
+        <h2 align="center">Crear profesor</h2>
+        {% if user.is_authenticated %}
+        <div class="center4" align="center">
+            <form id="create_teacher" method="POST" action="{% url 'createTeacher' %}">
+                {% csrf_token %}
+                <span>Nombre:</span><input name="teacher_nombre" id="teacher_nombre">
+                <span>Apellido:</span><input name="teacher_apellido" id="teacher_apellido">
+                <span>Dni:</span><input name="teacher_dni" id="teacher_dni">
+                <button class="button button3" type="submit" value="Crear">Crear</button>
+            </form>
+        </div>
+        {% else %}
+            <p> Tenes que estar logueado </p>
+        {% endif %}
+        <br>
+        
+    </body>
+</html>
